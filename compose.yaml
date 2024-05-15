@@ -3,56 +3,62 @@ services:
    namenode:
       image: apache/hadoop:3.3.6
       hostname: namenode
-      entrypoint: /start-namenode.sh
-      command: ["hdfs", "namenode","yum install krb5-workstation"]
+      command: ["hdfs", "namenode"]
       ports:
         - 8020:8020
         - 9870:9870
       env_file:
         - ./config
       environment:
-          ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+          ENSURE_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
       volumes:
-          - server-keytab:/var/keytabs
-          - /home/sagar/Desktop/hadoop/start-namenode.sh:/start-namenode.sh
+        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf
+        - keytab:/var/keytabs/
+      
    datanode:
       image: apache/hadoop:3.3.6
       hostname: datanode
-      entrypoint: /start-datanode.sh
-      command: ["hdfs", "datanode","yum install krb5-workstation"]
-     
+      command: ["hdfs", "datanode"]
       env_file:
         - ./config     
       volumes:
-        - server-keytab:/var/keytabs
-        - /home/sagar/Desktop/hadoop/start-datanode.sh:/start-datanode.sh
-        
+        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf     
+        - keytab:/var/keytabs/
    resourcemanager:
       image: apache/hadoop:3.3.6
       hostname: resourcemanager
-      command: ["yarn", "resourcemanager","yum install krb5-workstation"]
+      command: ["yarn", "resourcemanager"]
       ports:
          - 8088:8088
       env_file:
         - ./config
       volumes:
-        - server-keytab:/var/keytabs
+        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf
+        - keytab:/var/keytabs/
+        
+      
    nodemanager:
       image: apache/hadoop:3.3.6
-      command: ["yarn", "nodemanager","yum install krb5-workstation"]
+      command: ["yarn", "nodemanager"]
       env_file:
         - ./config
+      
       volumes:
-        - server-keytab:/var/keytabs
-   kerberos:
-      hostname: kerberos
-      entrypoint: /tmp/start-kdc.sh
-      build:
-        context: .
+        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf
+        - keytab:/var/keytabs/
+   kdc:
+      build: 
+        context: /home/sagar/Desktop/hadoop/kdc
         args:
-          - http_proxy
-          - https_proxy
-      volumes:
-        - server-keytab:/var/keytabs
+         - http_proxy
+         - https_proxy
+      hostname: kdc
+      volumes: 
+        - keytab:/var/keytabs/
+      ports:
+       - 8081:88
+
 volumes:
-    server-keytab:
+    keytab:    
+        
+

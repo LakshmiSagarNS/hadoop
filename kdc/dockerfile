@@ -1,0 +1,10 @@
+FROM alpine:3.7
+
+RUN apk update && \
+    apk add krb5-server
+
+COPY config2.sh /var/lib/krb5kdc/
+RUN chmod 777 /var/lib/krb5kdc/config2.sh
+EXPOSE 88
+
+ENTRYPOINT [ "sh", "/var/lib/krb5kdc/config2.sh"]
