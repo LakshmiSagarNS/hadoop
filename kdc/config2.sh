@@ -23,8 +23,8 @@ cat > /etc/krb5.conf << EOL
 
 [realms]
     ${REALM_NAME} = {
-        kdc = localhost
-        admin_server = localhost
+        kdc = kdc
+        admin_server = kdc
     }
 
 [domain_realm]

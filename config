@@ -11,9 +11,10 @@ HDFS-SITE.XML_dfs.namenode.kerberos.principal=hdfs/namenode@EXAMPLE.COM
 HDFS-SITE.XML_dfs.namenode.kerberos.internal.spnego.principal=HTTP/namenode@EXAMPLE.COM
 HDFS-SITE.XML_dfs.namenode.delegation.token.max-lifetime=180000
 HDFS-SITE.XML_dfs.namenode.delegation.token.renew-interval=90000
-HDFS-SITE.XML_dfs.data.transfer.protection=authentication
+HDFS-SITE.XML_dfs.data.transfer.protection=integrity
 HDFS-SITE.XML_dfs.datanode.address=0.0.0.0:10019
 HDFS-SITE.XML_dfs.http.policy=HTTPS_ONLY
+
 
 HDFS-SITE.XML_dfs.datanode.data.dir.perm=700
 HDFS-SITE.XML_dfs.datanode.keytab.file=/var/keytabs/hdfs.keytab

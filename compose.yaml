@@ -57,6 +57,7 @@ services:
         - keytab:/var/keytabs/
       ports:
        - 8081:88
+       - 8082:749
 
 volumes:
     keytab:    
