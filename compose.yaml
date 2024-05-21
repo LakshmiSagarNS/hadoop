@@ -27,7 +27,6 @@ services:
       volumes:
         - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf     
         - keytab:/var/keytabs/
-        
    resourcemanager:
       image: apache/hadoop:3.3.6
       hostname: resourcemanager
@@ -54,8 +53,8 @@ services:
       build: 
         context: /home/sagar/Desktop/hadoop/kdc
         args:
-         - http_proxy
-         - https_proxy
+           - http_proxy
+           - https_proxy
       hostname: kdc
       volumes: 
         - keytab:/var/keytabs/

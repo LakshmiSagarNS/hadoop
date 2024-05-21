@@ -2,6 +2,7 @@ FROM alpine:latest
 
 RUN apk update && \
     apk add krb5-server
+RUN apk add openjdk8
 
 COPY config2.sh /var/lib/krb5kdc/
 RUN chmod 777 /var/lib/krb5kdc/config2.sh
