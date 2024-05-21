@@ -14,8 +14,6 @@ HDFS-SITE.XML_dfs.namenode.delegation.token.renew-interval=90000
 HDFS-SITE.XML_dfs.data.transfer.protection=integrity
 HDFS-SITE.XML_dfs.datanode.address=0.0.0.0:10019
 HDFS-SITE.XML_dfs.http.policy=HTTPS_ONLY
-
-
 HDFS-SITE.XML_dfs.datanode.data.dir.perm=700
 HDFS-SITE.XML_dfs.datanode.keytab.file=/var/keytabs/hdfs.keytab
 HDFS-SITE.XML_dfs.encrypt.data.transfer=false
@@ -31,7 +29,6 @@ YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled=false
 YARN-SITE.XML_yarn.nodemanager.aux-services=mapreduce_shuffle
 YARN-SITE.XML_yarn.nodemanager.kerberos.principal=yarn/nodemanager@EXAMPLE.COM
 YARN-SITE.XML_yarn.nodemanager.keytab=/var/keytabs/hdfs.keytab
-
 YARN-SITE.XML_yarn.resourcemanager.principal=yarn/resourcemanager@EXAMPLE.COM
 YARN-SITE.XML_yarn.resourcemanager.keytab=/var/keytabs/hdfs.keytab
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.maximum-applications=10000

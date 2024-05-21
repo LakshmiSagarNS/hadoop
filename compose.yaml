@@ -4,7 +4,6 @@ services:
       image: apache/hadoop:3.3.6
       hostname: namenode
       command: ["hdfs", "namenode"]
-      
       ports:
         - 8020:8020
         - 9870:9870
@@ -21,12 +20,13 @@ services:
       image: apache/hadoop:3.3.6
       hostname: datanode
       command: ["hdfs", "datanode"]
-    
       env_file:
         - ./config     
       volumes:
         - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf     
         - keytab:/var/keytabs/
+
+
    resourcemanager:
       image: apache/hadoop:3.3.6
       hostname: resourcemanager
@@ -45,16 +45,15 @@ services:
       command: ["yarn", "nodemanager"]
       env_file:
         - ./config
-      
       volumes:
         - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
+
+        
    kdc:
       build: 
         context: /home/sagar/Desktop/hadoop/kdc
-        args:
-           - http_proxy
-           - https_proxy
+       
       hostname: kdc
       volumes: 
         - keytab:/var/keytabs/
