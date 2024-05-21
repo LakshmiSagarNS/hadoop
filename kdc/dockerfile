@@ -4,8 +4,8 @@ RUN apk update && \
     apk add krb5-server
 RUN apk add openjdk8
 
-COPY config2.sh /var/lib/krb5kdc/
-RUN chmod 777 /var/lib/krb5kdc/config2.sh
+COPY kdc-config.sh /var/lib/krb5kdc/
+RUN chmod 777 /var/lib/krb5kdc/kdc-config.sh
 EXPOSE 88
 
-ENTRYPOINT [ "sh", "/var/lib/krb5kdc/config2.sh"]
+ENTRYPOINT [ "sh", "/var/lib/krb5kdc/kdc-config.sh"]

@@ -44,11 +44,6 @@ ${KADMIN_PASS}
 ${KADMIN_PASS}
 EOL
 
-# Start services
-#kadmind 
-#krb5kdc
-
-#tail -f /var/log/krb5kdc.log
 
 #! /bin/bash
 

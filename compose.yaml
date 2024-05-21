@@ -13,7 +13,7 @@ services:
       environment:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
       volumes:
-        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf
+        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
         
       
@@ -25,7 +25,7 @@ services:
       env_file:
         - ./config     
       volumes:
-        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf     
+        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf     
         - keytab:/var/keytabs/
    resourcemanager:
       image: apache/hadoop:3.3.6
@@ -36,7 +36,7 @@ services:
       env_file:
         - ./config
       volumes:
-        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf
+        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
         
       
@@ -47,7 +47,7 @@ services:
         - ./config
       
       volumes:
-        - /home/sagar/Desktop/hadoop/kdc/krb5.conf:/etc/krb5.conf
+        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
    kdc:
       build: 
