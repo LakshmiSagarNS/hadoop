@@ -73,6 +73,6 @@ kadmin.local -q "addprinc -pw sagar sagar"
 
 chmod 777 /var/keytabs/hdfs.keytab
 
-
 krb5kdc -n
+
 tail -f /var/log/krb5kdc.log
