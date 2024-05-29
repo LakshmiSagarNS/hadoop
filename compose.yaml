@@ -2,11 +2,7 @@ version: "3.7"
 services:
    namenode:
       image: apache/hadoop:3.3.6
-      hostname: namenode
       command: ["hdfs", "namenode"]
-      ports:
-        - 8020:8020
-        - 9870:9870
       env_file:
         - ./config
       environment:
@@ -14,31 +10,35 @@ services:
       volumes:
         - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
+      network_mode: "host"
+
+
         
-      
+        
+    
    datanode:
       image: apache/hadoop:3.3.6
-      hostname: datanode
       command: ["hdfs", "datanode"]
       env_file:
-        - ./config     
+        - ./config 
       volumes:
         - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf     
         - keytab:/var/keytabs/
+      network_mode: "host"
+
 
 
    resourcemanager:
       image: apache/hadoop:3.3.6
-      hostname: resourcemanager
       command: ["yarn", "resourcemanager"]
-      ports:
-         - 8088:8088
       env_file:
         - ./config
       volumes:
         - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
-        
+      network_mode: "host"
+
+
       
    nodemanager:
       image: apache/hadoop:3.3.6
@@ -48,6 +48,8 @@ services:
       volumes:
         - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
+      network_mode: "host"
+
 
         
    kdc:
@@ -57,12 +59,12 @@ services:
       hostname: kdc
       volumes: 
         - keytab:/var/keytabs/
-        
-      ports:
-       - 8081:88/udp
-       - 8082:749/udp
+      network_mode: "host"
+   
 
 volumes:
-    keytab:    
-        
+    keytab:  
+
+
+
 

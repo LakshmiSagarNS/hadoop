@@ -6,6 +6,7 @@ DOMAIN_NAME="${DOMAIN_NAME-example.com}"
 KADMIN_PASS="${KADMIN_PASS-root}"
 MASTER_PASS="${MASTER_PASS-Master_Password}"
 
+
 # Copying krb5 conf file
 cat > /etc/krb5.conf << EOL
 [logging]
@@ -44,8 +45,10 @@ ${KADMIN_PASS}
 ${KADMIN_PASS}
 EOL
 
+#! /bin/ash
 
-#! /bin/bash
+
+rm /var/keytabs/hdfs.keytab
 
 /usr/sbin/kadmin.local -q "addprinc -randkey hdfs/namenode"
 /usr/sbin/kadmin.local -q "addprinc -randkey hdfs/datanode"
@@ -68,6 +71,12 @@ kadmin.local -q "addprinc -pw sagar sagar"
 
 chmod 777 /var/keytabs/hdfs.keytab
 
+
+keytool -genkey -alias namenode -keyalg rsa -keysize 1024 -dname "CN=namenode" -keypass changeme -keystore /var/keytabs/hdfs.jks -storepass changeme
+keytool -genkey -alias datanode -keyalg rsa -keysize 1024 -dname "CN=datanode" -keypass changeme -keystore /var/keytabs/hdfs.jks -storepass changeme
+
+chmod 777 /var/keytabs/hdfs.jks
+
 krb5kdc -n
 
-tail -f /var/log/krb5kdc.log
+

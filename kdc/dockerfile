@@ -6,6 +6,6 @@ RUN apk add openjdk8
 
 COPY kdc-config.sh /var/lib/krb5kdc/
 RUN chmod 777 /var/lib/krb5kdc/kdc-config.sh
-EXPOSE 88
+EXPOSE 88/udp
 
 ENTRYPOINT [ "sh", "/var/lib/krb5kdc/kdc-config.sh"]
