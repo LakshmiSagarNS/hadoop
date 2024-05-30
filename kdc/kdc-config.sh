@@ -6,27 +6,11 @@ DOMAIN_NAME="${DOMAIN_NAME-example.com}"
 KADMIN_PASS="${KADMIN_PASS-root}"
 MASTER_PASS="${MASTER_PASS-Master_Password}"
 
-
 # Copying krb5 conf file
 cat > /etc/krb5.conf << EOL
-[logging]
-    default = FILE:/var/log/krb5libs.log
-    kdc = FILE:/var/log/krb5kdc.log
-    admin_server = FILE:/var/log/kadmind.log
 
 [libdefaults]
-    dns_lookup_realm = true
-    ticket_lifetime = 24h
-    renew_lifetime = 7d
-    forwardable = true
-    rdns = false
     default_realm = ${REALM_NAME}
-
-[realms]
-    ${REALM_NAME} = {
-        kdc = kdc
-        admin_server = kdc
-    }
 
 [domain_realm]
     .${DOMAIN_NAME} = ${REALM_NAME}
@@ -50,21 +34,21 @@ EOL
 
 rm /var/keytabs/hdfs.keytab
 
-/usr/sbin/kadmin.local -q "addprinc -randkey hdfs/namenode"
-/usr/sbin/kadmin.local -q "addprinc -randkey hdfs/datanode"
-/usr/sbin/kadmin.local -q "addprinc -randkey hdfs/resourcemanager"
-/usr/sbin/kadmin.local -q "addprinc -randkey hdfs/nodemanager"
-/usr/sbin/kadmin.local -q "addprinc -randkey yarn/resourcemanager"
-/usr/sbin/kadmin.local -q "addprinc -randkey yarn/nodemanager"
-/usr/sbin/kadmin.local -q "addprinc -randkey hadoop"
+kadmin.local -q "addprinc -randkey hdfs/namenode"
+kadmin.local -q "addprinc -randkey hdfs/datanode"
+kadmin.local -q "addprinc -randkey hdfs/resourcemanager"
+kadmin.local -q "addprinc -randkey hdfs/nodemanager"
+kadmin.local -q "addprinc -randkey yarn/resourcemanager"
+kadmin.local -q "addprinc -randkey yarn/nodemanager"
+kadmin.local -q "addprinc -randkey hadoop"
 
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/namenode"
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/datanode"
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/resourcemanager"
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/nodemanager"
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab yarn/nodemanager"
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab yarn/resourcemanager"
-/usr/sbin/kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hadoop"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/namenode"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/datanode"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/resourcemanager"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hdfs/nodemanager"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab yarn/nodemanager"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab yarn/resourcemanager"
+kadmin.local -q "ktadd -k /var/keytabs/hdfs.keytab hadoop"
 
 kadmin.local -q "addprinc -pw hdfs hdfs"
 kadmin.local -q "addprinc -pw sagar sagar"

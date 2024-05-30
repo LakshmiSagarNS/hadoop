@@ -8,60 +8,53 @@ services:
       environment:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
       volumes:
-        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
+        - ./krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
       network_mode: "host"
 
 
-        
-        
-    
    datanode:
       image: apache/hadoop:3.3.6
       command: ["hdfs", "datanode"]
       env_file:
         - ./config 
       volumes:
-        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf     
+        - ./krb5.conf:/etc/krb5.conf     
         - keytab:/var/keytabs/
       network_mode: "host"
 
 
-
    resourcemanager:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.3.6 
       command: ["yarn", "resourcemanager"]
       env_file:
         - ./config
       volumes:
-        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
+        - ./krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
       network_mode: "host"
 
 
-      
    nodemanager:
-      image: apache/hadoop:3.3.6
+      image: apache/hadoop:3.3.6 
       command: ["yarn", "nodemanager"]
       env_file:
         - ./config
       volumes:
-        - /home/sagar/Desktop/hadoop/krb5.conf:/etc/krb5.conf
+        - ./krb5.conf:/etc/krb5.conf
         - keytab:/var/keytabs/
       network_mode: "host"
 
-
-        
+       
    kdc:
       build: 
-        context: /home/sagar/Desktop/hadoop/kdc
-       
-      hostname: kdc
+        context: ./kdc
+      ports:
+        - 8081:88/udp
+        - 8082:749/udp
       volumes: 
         - keytab:/var/keytabs/
-      network_mode: "host"
-   
-
+      
 volumes:
     keytab:  
 
