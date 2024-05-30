@@ -67,29 +67,31 @@ EXAMPLE.COM = {
   ```
 
 # Run the following hdfs client commands
-```
+
 * use hdfs principal to obtain the kerberos ticket.
-  
+  ```
   kinit hdfs@EXAMPLE.COM.
   password : hdfs.
-
+  ```
 * mkdir : Creates the directory in the root.
-
+  ```
    hdfs dfs -mkdir hdfs://localhost:8020/
-
+  ```
 * list : Lists all the directories and files in the hdfs filesystem.
-
+  ```
    hdfs dfs -ls hdfs://localhost:8020/
-
+  ```
 * copyFromLocal : Copy the file from local system to hdfs directory.
-
-   hdfs dfs -copyFromLocal <local system  file path (src )>  <hdfs file path (dest)>
-
+   ```
+   hdfs dfs -copyFromLocal <local system  file path (src)>  <hdfs file path (dest)>
+   ```
 * cat : To print the file contents.
-
+    ```
     hdfs dfs -cat hdfs://localhost:8020/<path to file>
-
-* hdfs commands : https://www.geeksforgeeks.org/hdfs-commands/
-```
+    ```
+* hdfs commands :
+    ```
+    https://www.geeksforgeeks.org/hdfs-commands/
+    ```
 
 
