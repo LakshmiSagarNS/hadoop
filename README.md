@@ -13,9 +13,9 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 # Requirements
 
 ```
-Hadoop-3.3.6,
-Docker,
-Kerberos(krb5-user).
+1.Hadoop-3.3.6,
+2.Docker,
+3.Kerberos(krb5-user).
 ```
 
 # Configuration
@@ -23,7 +23,7 @@ Kerberos(krb5-user).
 
 * Add the following configuration for hadoop client hdfs-site.xml and core-site.xml 
 
-* path to file : hadoop-3.3.6/etc/hadoop/ vi hdfs-site.xml
+* path to hdfs-site.xml:/hadoop-3.3.6/etc/hadoop/ vi hdfs-site.xml
 
 ```
 <property>
@@ -36,7 +36,7 @@ Kerberos(krb5-user).
 </property>
 ```
 
-* path to file : hadoop-3.3.6/etc/hadoop/ vi core-site.xml
+* path to core-site.xml:/hadoop-3.3.6/etc/hadoop/ vi core-site.xml
 
 ```
 <property>
@@ -51,7 +51,7 @@ Kerberos(krb5-user).
 
 * Configure the kerberos client krb5.conf with following configs
 
-* path to file : /etc/krb5.conf
+* path to krb5.conf:/etc/krb5.conf
 
 ```
 [realms]
@@ -68,21 +68,28 @@ EXAMPLE.COM = {
 
 # Run the following hdfs client commands
 ```
-* mkdir : creates the directory in the root.
+* use hdfs principal to obtain the kerberos ticket.
+  
+  kinit hdfs@EXAMPLE.COM.
+  password : hdfs.
+
+* mkdir : Creates the directory in the root.
 
    hdfs dfs -mkdir hdfs://localhost:8020/
 
-* list : lists all the directories and files in the hdfs filesystem.
+* list : Lists all the directories and files in the hdfs filesystem.
 
    hdfs dfs -ls hdfs://localhost:8020/
 
-* copyFromLocal : copy the file from local system to hdfs directory.
+* copyFromLocal : Copy the file from local system to hdfs directory.
 
    hdfs dfs -copyFromLocal <local system  file path (src )>  <hdfs file path (dest)>
 
 * cat : To print the file contents.
 
     hdfs dfs -cat hdfs://localhost:8020/<path to file>
+
+* hdfs commands : https://www.geeksforgeeks.org/hdfs-commands/
 ```
 
 
