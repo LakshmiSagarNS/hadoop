@@ -1,14 +1,10 @@
 # About 
 
-```
-This repo is about hadoop with kerberos authentication for both hadoop client and hadoop services.
 
-The user authenticates using the principal and password stored in the kerberos database and obtains the kerberos ticket granting ticket from the Authentication Server.
-
-The tgt obtained in previous step is used by the client to obtain the hadoop service ticket from the ticket granting Server.
-
+This repo is about hadoop with kerberos authentication for both hadoop client and hadoop services.\
+The user authenticates using the principal and password stored in the kerberos database and obtains the kerberos ticket granting ticket from the Authentication Server.\
+The tgt obtained in previous step is used by the client to obtain the hadoop service ticket from the ticket granting Server.\
 After obtaining the Service ticket user is allowed to perform the permitted operations on hdfs.
-```
 
 # Requirements
 
