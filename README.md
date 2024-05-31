@@ -9,81 +9,20 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 # Requirements
 
 
-1.install `java 11.0`.
+1.install `java 11.0` suitable for your operating system from below link and setup the java environment variables.
 
-## ubuntu 22.04/windows (wsl2) users
-  
-  * use the follwing command
+ * https://www.openlogic.com/openjdk-downloads?page=2 
 
-```
-    apt install openjdk-11-jdk
-```
-
-  * setup environment variable for java
-
-```
-    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64  
-    export PATH=$PATH:$JAVA_HOME/bin
-
-```
-  * check java version
-
-```
-    javac -version
-```
-## mac os users
-
-  * use the follwing command
-
-```
-    brew install java11
-```
-
-  * check java version
-
-```
-    java --version
-```
+2.install hadoop-3.3.6 for the client system using below given link.
 
 
+ * https://hadoop.apache.org/releases.html
 
-2.install hadoop for the client system
+ 
 
-## ubuntu 22.04/windows(wsl2)/mac os users
+3.install Kerberos(krb5-user) for client system using below given link.
 
-  * use compressed archive file to install `hadoop-3.3.6`.
-```
-   wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6-src.tar.gz
-```
-  * decompress the hadoop-3.3.6 file using the following command in the terminal 
-```   
-    tar -xzf hadoop-3.3.6.tar.gz
-``` 
-  * setup Environment Variables for hadoop.
-```
-    export HADOOP_HOME=/path/to/hadoop-3.3.6
-    export PATH=$PATH:$HADOOP_HOME/bin
-```
-  * check hadoop version
-```
-    hadoop version
-```
-
-3.install Kerberos(krb5-user) for client system
-
-  ## ubuntu 22.04/windows(wsl2) users
-  * use the below command in terminal
-
-  ```
-    apt install krb5-user 
-  ```
-  
-  ## mac os users
-  * use the below command 
-  ```
-    brew install krb5
-  ```
-
+ * https://kerberos.org/dist/
 
 
 4.Docker.
@@ -91,7 +30,7 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 # Configuration
 
 
-* Add the following configuration for hadoop client `hdfs-site.xml` and `core-site.xml` 
+Add the following configuration for hadoop client `hdfs-site.xml` and `core-site.xml` 
 
 
 path to hdfs-site.xml:
@@ -128,7 +67,7 @@ path to core-site.xml:
 </configuration>
 ```
 
-* Configure the kerberos client `krb5.conf` with following configs
+Configure the kerberos client `krb5.conf` with following configs
 
 path to krb5.conf:
  * ubuntu/windows(wsl2):`/etc/krb5.conf`
