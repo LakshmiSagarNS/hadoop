@@ -130,11 +130,11 @@ EXAMPLE.COM = {
 ```
 * `mkdir` : Creates the directory in the root.
 ```
-   hdfs dfs -mkdir hdfs://localhost:8020/
+   hdfs dfs -mkdir hdfs://localhost:8020/<directory name>
 ```
 * `list` : Lists all the directories and files in the hdfs filesystem.
 ```
-   hdfs dfs -ls hdfs://localhost:8020/
+   hdfs dfs -ls hdfs://localhost:8020/<path>
 ```
 * `copyFromLocal` : Copy the file from local system to hdfs filesystem.
 ```
