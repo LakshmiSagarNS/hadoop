@@ -9,35 +9,9 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 # Requirements
 
 
-1.install hadoop for the client system
+1.install `java 11.0`.
 
-  * use compressed archive file to install `hadoop-3.3.6`.
-```
-    https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6-src.tar.gz
-```
-  * decompress the hadoop-3.3.6 file using the following command in the terminal 
-```   
-    tar -xzf hadoop-3.3.6.tar.gz
-``` 
-  * setup Environment Variables for hadoop.
-```
-    export HADOOP_HOME=/path/to/hadoop-3.3.6
-    export PATH=$PATH:$HADOOP_HOME/bin
-```
-  * check hadoop version
-```
-    hadoop version
-```
-
-2.install Kerberos(krb5-user) for client system
-
-  * use the following command
-
-```
-    apt install krb5-user
-```
-
-3.install `java 11.0`.
+## ubuntu 22.04/windows (wsl2) users
   
   * use the follwing command
 
@@ -57,6 +31,65 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 ```
     javac -version
 ```
+## mac os users
+
+  * use the follwing command
+
+```
+    brew install java11
+```
+
+  * symlink it
+
+```
+    sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+```
+  * check java version
+
+```
+    java --version
+```
+
+
+
+2.install hadoop for the client system
+
+## ubuntu 22.04/windows(wsl2)/mac os users
+
+  * use compressed archive file to install `hadoop-3.3.6`.
+```
+    https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6-src.tar.gz
+```
+  * decompress the hadoop-3.3.6 file using the following command in the terminal 
+```   
+    tar -xzf hadoop-3.3.6.tar.gz
+``` 
+  * setup Environment Variables for hadoop.
+```
+    export HADOOP_HOME=/path/to/hadoop-3.3.6
+    export PATH=$PATH:$HADOOP_HOME/bin
+```
+  * check hadoop version
+```
+    hadoop version
+```
+
+3.install Kerberos(krb5-user) for client system
+
+  ## ubuntu 22.04/windows(wsl2) users
+  * use the below command in terminal
+
+  ```
+    apt install krb5-user 
+  ```
+  
+  ## mac os users
+  * use the below command 
+  ```
+    brew install krb5
+  ```
+
+
 
 4.Docker.
 
@@ -65,9 +98,12 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 
 * Add the following configuration for hadoop client `hdfs-site.xml` and `core-site.xml` 
 
-```
- path to hdfs-site.xml:/hadoop-3.3.6/etc/hadoop/ vi hdfs-site.xml
 
+   path to hdfs-site.xml:
+    * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
+    * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
+
+```
 <configuration>
 <property>
         <name>dfs.replication</name>
@@ -80,9 +116,11 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 </configuration>
 ```
 
-```
- path to core-site.xml:/hadoop-3.3.6/etc/hadoop/ vi core-site.xml
+  path to core-site.xml:
+   * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
+   * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
 
+```
 <configuration>
 <property>
         <name>hadoop.security.authentication</name>
@@ -97,9 +135,12 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 
 * Configure the kerberos client `krb5.conf` with following configs
 
-```
-path to krb5.conf:/etc/krb5.conf
+  path to krb5.conf:
+   * ubuntu/windows(wsl2):`/etc/krb5.conf`
+   * mac os:` /Library/Preferences/edu.mit.kerberos`
 
+
+```
 [realms]
 
 EXAMPLE.COM = {
@@ -114,15 +155,15 @@ EXAMPLE.COM = {
 # Run Docker compose command to start hadoop and kerberos services in the docker container
 
 ```
-  docker compose up
+  docker compose up --build -d
 ```
 
 # Run the following hdfs commands in client system
 
 * use hdfs principal to obtain the kerberos ticket.
+* password : hdfs
 ```
-  kinit hdfs@EXAMPLE.COM.
-  password : hdfs.
+  kinit hdfs@EXAMPLE.COM
 ```
 * `mkdir` : Creates the directory in the root.
 ```
@@ -134,15 +175,15 @@ EXAMPLE.COM = {
 ```
 * `copyFromLocal` : Copy the file from local system to hdfs filesystem.
 ```
-   hdfs dfs -copyFromLocal <local system  file path (src)>  <hdfs file path (dest)>
+   hdfs dfs -copyFromLocal <local system file path (src)>  <hdfs file path (dest)>
 ```
 * `cat` : To print the file contents.
 ```
     hdfs dfs -cat hdfs://localhost:8020/<path to file>
 ```
 * hdfs commands :
-```
+
     https://www.geeksforgeeks.org/hdfs-commands/
-```
+
 
 
