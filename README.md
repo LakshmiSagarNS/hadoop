@@ -33,12 +33,23 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 Add the following configuration for hadoop client `hdfs-site.xml` and `core-site.xml` 
 
 
-path to hdfs-site.xml:
+path to hdfs-site.xml and core-site.xml:
  * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
  * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
 
+example:   
+         
+           
+    <configuration>
+        <property>
+            <name></name>
+            <value></value>
+        </property>
+    </configuration>
+
+hdfs-site.xml configurations:
+
 ```
-<configuration>
 <property>
         <name>dfs.replication</name>
         <value>1</value>
@@ -47,15 +58,12 @@ path to hdfs-site.xml:
         <name>dfs.data.transfer.protection</name>
         <value>integrity</value>
 </property>
-</configuration>
 ```
 
-path to core-site.xml:
- * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
- * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
+core-site.xml configurations:
+
 
 ```
-<configuration>
 <property>
         <name>hadoop.security.authentication</name>
         <value>kerberos</value>
@@ -64,14 +72,14 @@ path to core-site.xml:
         <name>hadoop.rpc.protection</name>
         <value>authentication</value>
 </property>
-</configuration>
+
 ```
 
 Configure the kerberos client `krb5.conf` with following configs
 
 path to krb5.conf:
  * ubuntu/windows(wsl2):`/etc/krb5.conf`
- * mac os:` /Library/Preferences/edu.mit.kerberos`
+ 
 
 
 ```
