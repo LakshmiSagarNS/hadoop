@@ -39,11 +39,6 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
     brew install java11
 ```
 
-  * symlink it
-
-```
-    sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
-```
   * check java version
 
 ```
@@ -58,7 +53,7 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 
   * use compressed archive file to install `hadoop-3.3.6`.
 ```
-    https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6-src.tar.gz
+   wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6-src.tar.gz
 ```
   * decompress the hadoop-3.3.6 file using the following command in the terminal 
 ```   
@@ -99,9 +94,9 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 * Add the following configuration for hadoop client `hdfs-site.xml` and `core-site.xml` 
 
 
-   path to hdfs-site.xml:
-    * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
-    * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
+path to hdfs-site.xml:
+ * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
+ * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
 
 ```
 <configuration>
@@ -116,9 +111,9 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 </configuration>
 ```
 
-  path to core-site.xml:
-   * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
-   * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
+path to core-site.xml:
+ * ubuntu/windows(wsl2):`/hadoop-3.3.6/etc/hadoop/`
+ * mac os:`/opt/homebrew/Cellar/hadoop/3.3.6/libexec/etc/hadoop`
 
 ```
 <configuration>
@@ -135,9 +130,9 @@ After obtaining the Service ticket user is allowed to perform the permitted oper
 
 * Configure the kerberos client `krb5.conf` with following configs
 
-  path to krb5.conf:
-   * ubuntu/windows(wsl2):`/etc/krb5.conf`
-   * mac os:` /Library/Preferences/edu.mit.kerberos`
+path to krb5.conf:
+ * ubuntu/windows(wsl2):`/etc/krb5.conf`
+ * mac os:` /Library/Preferences/edu.mit.kerberos`
 
 
 ```
